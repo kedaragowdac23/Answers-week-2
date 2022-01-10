@@ -1,0 +1,640 @@
+1.Write a to read time in HH:MM:SS format and convert into total seconds using class 
+
+#include <iostream>
+#include <iomanip>
+ 
+using namespace std;
+ 
+class Time
+{
+    private:
+        int seconds;
+        int hh,mm,ss;
+    public:
+        void getTime(void);
+        void convertIntoSeconds(void);
+        void displayTime(void);
+};
+ 
+void Time::getTime(void)
+{
+    cout << "Enter time:" << endl;
+    cout << "Hours?   ";          cin >> hh;
+    cout << "Minutes? ";          cin >> mm;
+    cout << "Seconds? ";          cin >> ss;
+}
+ 
+void Time::convertIntoSeconds(void)
+{
+    seconds = hh*3600 + mm*60 + ss;
+}
+ 
+void Time::displayTime(void)
+{
+    cout << "The time is = " << setw(2) << setfill('0') << hh << "hr:"
+                             << setw(2) << setfill('0') << mm << "m:"
+                             << setw(2) << setfill('0') << ss << "s:"<<endl;
+    cout << "Time in total seconds: " << seconds;
+}
+ 
+int main()
+{
+    Time T;
+     
+    T.getTime();
+    T.convertIntoSeconds();
+    T.displayTime();
+     
+    return 0;
+}
+
+output:
+
+Enter time:
+Hours?   1
+Minutes? 1
+Seconds? 6
+The time is = 01hr:01m:06s:
+Time in total seconds: 3666
+
+========================================================================
+#include<iostream>
+using namespace std;
+
+class Employee
+{
+        int eid;
+        char ename[100];
+        float basic_salary, hra, da, i_tax, net_salary;
+
+        public:
+        void accept_details()
+        {
+                cout<<"\n Enter Employee Id : ";
+                cin>>eid;
+                cout<<"\n Enter Employee Name : ";
+                cin>>ename;
+                cout<<"\n Enter Basic Salary : ";
+                cin>>basic_salary;
+
+                hra = 800;
+                da = 0.25 * basic_salary;
+                i_tax = 0.15 * basic_salary;
+                net_salary = basic_salary + da + hra - i_tax;
+        }
+        void display_details()
+        {
+                cout<<"\n ----------------------- ";
+                cout<<"\n Employee Id        : "<<eid;
+                cout<<"\n Employee Name  : "<<ename;
+                cout<<"\n Basic Salary         : "<<basic_salary;
+                cout<<"\n HRA                      : "<<hra;
+                cout<<"\n DA                        : "<<da;
+                cout<<"\n I-Tax                      : "<<i_tax;
+                cout<<"\n Net Salary             : "<<net_salary;
+        }
+};
+int main()
+{
+        Employee e;
+        e.accept_details();
+        e.display_details();
+        return 0;
+}
+
+output:
+
+Enter Employee Id : 10
+
+ Enter Employee Name : kedar
+
+ Enter Basic Salary : 45000
+
+ -----------------------
+ Employee Id        : 10
+ Employee Name  : kedar
+ Basic Salary         : 45000
+ HRA                      : 800
+ DA                        : 11250
+ I-Tax                      : 6750
+ Net Salary             : 50300
+
+===============================================================
+#include <iostream>
+
+ using namespace std;
+
+class Rectangle
+{
+    int len, bre, area;
+
+    public:
+    void setlen(int l = 0)
+    {
+        len = l;
+    }
+    void setbre(int b = 0)
+    {
+        bre = b;
+    }
+    Rectangle operator*(Rectangle obj)
+    {
+        Rectangle obj1;
+        obj1.area = len * obj.bre;
+        return obj1;
+    }
+    void print()
+    {
+        cout << "Area of rectangle: " << area << " unit sq.";
+    }
+};
+
+int main()
+{
+
+    int len, bdth;
+    cout << "Enter the Length and Breadth: ";
+    cin >> len >> bdth;
+    Rectangle Len;
+    Len.setlen(len);
+    Rectangle Bred;
+    Bred.setbre(bdth);
+    Rectangle Area;
+    Area = Len * Bred;
+    Area.print();
+}
+
+
+output:
+
+Enter the Length and Breadth: 10 5
+Area of rectangle: 50 unit sq.
+
+=======================================================
+Write a C++ program to check whether given two strings are numeric or not?
+
+#include <iostream>
+using namespace std;
+
+int isNumericString(unsigned char *num)
+{
+	int i=0;
+    while (*(num+i)) {
+        if (*(num+i) >= '0' && *(num+i) <= '9')
+            i++;
+        else
+            return 0;
+    }
+    return 1;
+}
+
+int main()
+{
+	int ret = 0;
+	unsigned char str1[] = "ABC";
+	unsigned char str2[] = "123";
+
+	ret = isNumericString(str1);
+	if(ret)
+		cout<<"It is numeric string"<<endl;
+	else
+		cout<<"It is not numeric string"<<endl;
+
+	ret = isNumericString(str2);
+	if(ret)
+		cout<<"It is numeric string"<<endl;
+	else
+		cout<<"It is not numeric string"<<endl;
+
+	return 0;
+}
+
+
+output:
+It is not numeric string
+It is numeric string
+
+============================================================================
+#include<iostream.h>
+#include<conio.h>
+using namespace std;
+class electricity
+{
+char name[20];
+int unit;
+float Rs;
+public:
+void get()
+{
+cout<<“\nEnter the Name & Unit’s of Electricity user: \n”;
+cin>>name>>unit;
+}
+void check()
+{
+if(unit<=100)
+{
+Rs=unit*0.40;
+Rs=Rs+150;
+}
+else if(unit<=200||unit>100)
+{
+Rs=unit*0.50;
+Rs=Rs+150;
+}
+else if(unit<=300||unit>200)
+{
+Rs=unit*0.60;
+Rs=Rs+150;
+}
+}
+void disp()
+{
+if(Rs>=250)
+{
+Rs=Rs+0.15;
+}
+cout<<name<<” \t”<<Rs<<endl;
+}
+};
+int main()
+{
+int n,i;
+electricity e[10];
+clrscr();
+cout<<“\nHow many electricity User: \n”;
+cin>>n;
+for(i=0;i<n;i++)
+{
+e[i].get();
+e[i].check();
+}
+cout<<“\nElectricity User’s: \n”;
+cout<<“\nName\t Total cost(Rs)\n”;
+cout<<“=================================\n”;
+for(i=0;i<n;i++)
+{
+e[i].disp();
+}
+getch();
+}
+=================================================================
+Write a program for multiplication of two matrices using OOP.
+#include<iostream>
+using namespace std;
+class Matrix
+{
+	int a[10][10],m,n;
+	public:
+		void inputmatrices();
+		void outputmatrices();
+		Matrix operator*(Matrix x);
+};
+void Matrix::inputmatrices()
+{
+	int i,j;
+	cout<<"Enter order of matrix:";
+	cin>>m>>n;
+	cout<<"Enter matrix elements:";
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cin>>a[i][j];
+		}
+	}
+}
+void Matrix::outputmatrices()
+{ 
+	int i,j;
+	for(i=0;i<m;i++)
+	{ 
+		for(j=0;j<n;j++)
+		{
+			cout<<a[i][j]<<"\t";
+			cout<<endl; 
+		}
+	}
+}
+
+Matrix Matrix::operator*(Matrix x)
+{ 
+	Matrix c;
+	int i,j,k;
+	if(n==x.m)
+	{ 
+		c.m=m;
+		c.n=x.n;
+		for(i=0;i<m;i++)
+		{
+			for(j=0;j<x.n;j++)
+			{ 
+				c.a[i][j]=0;
+			}
+		}
+		for(k=0;k<m;k++)
+		{
+			c.a[i][j]+=a[i][k]*x.a[k][j];
+		}
+		return c; 
+	}
+	else
+		cout<<"Multiplication is not possible.";
+}
+int main()
+{ 
+Matrix A,B,C;
+cout<<"Enter matrix A order and elements:"<<endl;
+A.inputmatrices();
+cout<<"Enter matrix B order and elements:"<<endl;
+B.inputmatrices();
+C=A*B;
+cout<<"Resulting matrix is:"<<endl;
+C.outputmatrices();
+return 0;
+}
+
+output:
+Enter matrix A order and elements:
+Enter order of matrix:2 2
+Enter matrix elements:1 2 3 4
+Enter matrix B order and elements:
+Enter order of matrix:2 2
+Enter matrix elements:1 2 3 4
+Resulting matrix is:
+7 	10
+15 	22
+============================================
+Write a program to find the greatest of two given numbers in two different classes using friend 
+function.
+#include<iostream>
+using namespace std;
+ 
+class a;
+ 
+class b
+{
+    int number;
+    public:
+    b(int x)
+    {
+        number=x;
+    }
+    void friend greatest(a a1,b b1);
+};
+ 
+class a
+{
+    int number;
+    public:
+    a(int x)
+    {
+        number=x;
+    }
+    void friend greatest(a a1,b b1);
+};
+ 
+void greatest(a a1,b b1)
+{
+    if(a1.number>b1.number)
+    {
+        cout<<"\n Number in class A is greatest i.e. "<<a1.number;
+    }
+    else if(a1.number<b1.number)
+    {
+        cout<<"\n Number in class B is greatest i.e. "<<b1.number;
+    }
+    else
+    {
+        cout<<"\n Number in both classes are equal";
+    }
+}
+ 
+int main()
+{
+    cout<<"\n\n Program to find greatest of two numbers in two different classes using friend function";
+    cout<<"\n ^^^^^^^ ^^ ^^^^ ^^^^^^^^ ^^ ^^^ ^^^^^^^ ^^ ^^^ ^^^^^^^^^ ^^^^^^^ ^^^^^ ^^^^^^ ^^^^^^^^";
+    int num;
+ 
+    cout<<"\n\n Enter number for class A - ";
+    cin>>num;
+    a a1(num);
+ 
+    cout<<"\n Enter number for class B - ";
+    cin>>num;
+    b b1(num);
+ 
+    greatest(a1,b1);
+    cout<<"\n";
+ 
+    return 0;
+}
+
+output:
+Program to find greatest of two numbers in two different classes using friend function
+ ^^^^^^^ ^^ ^^^^ ^^^^^^^^ ^^ ^^^ ^^^^^^^ ^^ ^^^ ^^^^^^^^^ ^^^^^^^ ^^^^^ ^^^^^^ ^^^^^^^^
+
+ Enter number for class A - 2
+
+ Enter number for class B - 3
+
+ Number in class B is greatest i.e. 3
+
+==============================================================================================
+#include <iostream>
+using namespace std;
+
+// create a class
+
+class Room
+
+ {
+
+    int len;
+
+    int bd;
+
+    int ht;
+
+public:
+
+void setdata(int a, int b, int c)
+
+{
+
+len=a;
+
+bd=b;
+
+ht=c;
+
+}
+
+    long area() {
+
+	return len * bd;
+
+    }
+
+
+
+    long volume() {
+
+	return len * bd * ht;
+
+    }
+
+};
+
+
+
+int main()
+
+ {
+
+
+
+    // create object of Room class
+
+    Room room1;
+
+
+
+
+      room1.setdata(100,25,30);
+
+
+
+
+
+    // calculate and display the area and volume of the room 1
+
+    cout << "Area of Room 1 =  " << room1.area() << endl;
+
+
+
+    cout << "Volume of Room 1=  " << room1.volume() << endl;
+
+
+
+
+
+    return 0;
+
+}
+
+
+output:
+Area of Room  =  2500
+Volume of Room =  75000
+============================================================================================
+patient details:
+#include<iostream>
+using namespace std;
+
+class Patient    //Base Class
+{
+        char patient_name[100];
+        int age;
+        char sex[50];
+
+        public:
+                void accept_patient_details()
+                {
+                        cout<<"\n -------------------------------";
+                        cout<<"\n Enter Patient Details";
+                        cout<<"\n -------------------------------";
+                        cout<<"\n Patient Name : ";
+                        cin>>patient_name;
+                        cout<<"\n Patient Age  :  ";
+                        cin>>age;
+                        cout<<"\n Sex          :  ";
+                        cin>>sex;
+                }
+                void display_patient_details()
+                {
+                        cout<<"\n -------------------------------";
+                        cout<<"\n Displaying Patient Details";
+                        cout<<"\n -------------------------------";
+                        cout<<"\n Patient Name  :  "<<patient_name;
+                        cout<<"\n Patient Age   :  "<<age;
+                        cout<<"\n Sex           :  "<<sex;
+                }
+};
+class IPD    //Base Class
+{
+        int ward_no;
+        int bed_no;
+        int charge_per_day;
+    public:
+        void accept_ipd_details()
+        {
+                cout<<"\n -------------------------------";
+                cout<<"\n Enter IPD Details ";
+                cout<<"\n -------------------------------";
+                cout<<"\n Ward No.        :  ";
+                cin>>ward_no;
+                cout<<"\n Bed No.         :  ";
+                cin>>bed_no;
+                cout<<"\n Charge Per Day  :  ";
+                cin>>charge_per_day;
+        }
+        void display_ipd_details()
+        {
+                cout<<"\n -------------------------------";
+                cout<<"\n Displaying IPD Details";
+                cout<<"\n -------------------------------";
+                cout<<"\n Ward No.         :  "<<ward_no;
+                cout<<"\n Bed No.          :  "<<bed_no;
+                cout<<"\n Charge Per Day   :  "<<charge_per_day;
+        }
+};
+//Class IPDPatient is derived from Class IPD and Class Patient
+class IPDPatient : public IPD, public Patient  
+{
+        int no_of_days_admitted;
+
+    public:
+        void accept_ipd_patient_details()
+        {
+                accept_patient_details();
+                accept_ipd_details();
+                cout<<"\n\n Enter No. of Days Admitted   :  ";
+                cin>>no_of_days_admitted;
+        }
+        void display_ipd_patient_details()
+        {
+                display_patient_details();
+                display_ipd_details();
+                cout<<"\n -------------------------------";
+                cout<<"\n\n No. of Days Admitted  :  "<<no_of_days_admitted;
+        }
+};
+int main()
+{
+        IPDPatient *ipdt;   // Object ipdt is created of class IPDPatient <-- Child Class
+        int i,cnt;
+        cout<<"\n Enter No. of Patient Details You Want  :  ";
+        cin>>cnt;
+        ipdt=new IPDPatient[cnt];
+        for(i=0;i<cnt;i++)
+        {
+                ipdt[i].accept_ipd_patient_details();
+                ipdt[i].display_ipd_patient_details();
+        }
+        return 0;
+}
+
+ output:
+
+
+Enter no of patient details you want : 1
+Enter patient details
+Patient name : anup
+Patient age : 35
+Sex : male
+Enter IPD details
+Ward no : 1001
+Bed no: 10
+Charge per day : 500
+Enter no of days admitted : 30	
+==============================================================================
